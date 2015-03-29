@@ -10,47 +10,72 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/please_input_username" />
+
     <EditText
         android:id="@+id/et_username"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@null"
         android:singleLine="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/please_input_password" />
+
     <EditText
         android:id="@+id/et_password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@null"
-        android:singleLine="true"
-        android:inputType="textPassword" />
-    
+        android:inputType="textPassword"
+        android:singleLine="true" />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-	    <TextView
-	        android:id="@+id/tv_remenber_user_info"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_centerVertical="true"
-	        android:text="@string/remenber_user_info" />
-	    <CheckBox
-	        android:id="@+id/cb"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_centerVertical="true"
-	        android:layout_toRightOf="@id/tv_remenber_user_info"
-	        android:checked="true" />
-	    
-	    <Button
-	        android:id="@+id/bt_login"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentRight="true"
-	        android:text="@string/bt_login" />
+
+        <TextView
+            android:id="@+id/tv_remenber_user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/remenber_user_info" />
+
+        <CheckBox
+            android:id="@+id/cb_remenber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_remenber_user_info"
+            android:checked="true" />
+
+        <Button
+            android:id="@+id/bt_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/login" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/add_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/add_info" />
+
+        <Button
+            android:id="@+id/del_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/add_info"
+            android:text="@string/del_info" />
     </RelativeLayout>
 
 </LinearLayout>
