@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +31,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 	private CheckBox cb_remenber;
 	private Button button;
 	private boolean stored = false;
-	
+
 	private LoginService loginService;
 
 	@Override
@@ -44,7 +45,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 		button = (Button) findViewById(R.id.bt_login);
 
 		loginService = new LoginService(this);
-		
+
 		Map<String, String> userInfoMap = loginService.getLocalUserInfoMap();
 		if(userInfoMap != null) {
 			et_username.setText(userInfoMap.get("username"));
@@ -69,7 +70,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 		else
 			showMessage(R.string.add_info, R.string.add_failed);
 	}
-	
+
 	private void delUserInfo() {
 		if(loginService.delLocalUserInfo())
 			showMessage(R.string.del_info, R.string.del_success);
@@ -95,13 +96,19 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 
 	@Override
 	public void onClick(View v) {
-		if(FastClickUtil.isFastDoubleClick())
+		if(FastClickUtil.isFastDoubleClick()) {
+			Toast.makeText(this, R.string.click_too_fast, Toast.LENGTH_SHORT).show();
 			return;
+		}
 		switch (v.getId()) {
 		case R.id.bt_login:
 			// 清空password焦点，再次获得焦点时，可以清空MD5内容
 			et_password.clearFocus();
-			doLogin();
+			new Handler().postDelayed(new Runnable(){
+				public void run() {
+					doLogin();
+				}
+			}, 5000);
 			break;
 		case R.id.add_info:
 			addUserInfo();
@@ -132,10 +139,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 		userInfoMap.put("username", username);
 		userInfoMap.put("password", password);
 		if(loginService.verifyUserInfo(userInfoMap)) {
-			if(cb_remenber.isChecked())
+			if(cb_remenber.isChecked()) {
 				loginService.storeLocalUserInfoMap(userInfoMap);
-			else
-				cleanEdit();
+			} else {
+				loginService.delLocalUserInfo();
+			}
 			loginSuccess();
 		} else {
 			loginFailed();
@@ -164,7 +172,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 	private void loginSuccess() {
 		showMessage(R.string.login_sucess, R.string.login_sucess_message);
 	}
-	
+
 	private void loginFailed() {
 		showMessage(R.string.login_failed, R.string.login_failed_message);
 	}
