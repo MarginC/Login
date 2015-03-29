@@ -5,7 +5,7 @@ import android.util.Log;
 
 public class FastClickUtil {
 	private static long lastClickTime = 0;
-	public static boolean isFastDoubleClick() {
+	public synchronized static boolean isFastDoubleClick() {
 		long time = System.currentTimeMillis();
 		long timeD = time - lastClickTime;
 		Log.i("Click", String.valueOf(timeD));

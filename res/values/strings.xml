@@ -6,6 +6,7 @@
     <string name="please_input_password">请输入密码：</string>
     <string name="remenber_user_info">记住登录信息</string>
     <string name="login">登录</string>
+    <string name="click_too_fast">点击太快，请稍后再试</string>
     <string name="sys_error">系统错误</string>
     <string name="empty_username">用户名不能为空</string>
     <string name="empty_password">用户密码不能为空</string>

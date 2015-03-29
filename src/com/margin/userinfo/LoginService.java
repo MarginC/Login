@@ -10,7 +10,7 @@ import android.content.SharedPreferences.Editor;
 public class LoginService {
 	Context context;
 	SharedPreferences sp;
-	
+
 	public LoginService(Context context) {
 		this.context = context;
 		this.sp = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE);
@@ -24,7 +24,7 @@ public class LoginService {
 		map.put("password", password);
 		return map;
 	}
-	
+
 	public boolean storeLocalUserInfoMap(Map<String, String> userInfoMap) {
 		if(userInfoMap.get("username") == null || userInfoMap.get("password") == null)
 			return false;
@@ -33,7 +33,7 @@ public class LoginService {
 		editor.putString("password", userInfoMap.get("password"));
 		return editor.commit();
 	}
-	
+
 	public boolean verifyUserInfo(Map<String, String> userInfoMap) {
 		if(userInfoMap == null)
 			return false;
