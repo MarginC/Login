@@ -45,7 +45,8 @@ public class LoginService {
 
 	public boolean delLocalUserInfo() {
 		Editor editor = sp.edit();
-		editor.clear();
+		editor.remove("username");
+		editor.remove("password");
 		return editor.commit();
 	}
 
