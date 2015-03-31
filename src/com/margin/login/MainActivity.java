@@ -13,7 +13,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -104,11 +103,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 		case R.id.bt_login:
 			// 清空password焦点，再次获得焦点时，可以清空MD5内容
 			et_password.clearFocus();
-			new Handler().postDelayed(new Runnable(){
-				public void run() {
-					doLogin();
-				}
-			}, 5000);
+				doLogin();
 			break;
 		case R.id.add_info:
 			addUserInfo();
@@ -143,7 +138,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 				loginService.storeLocalUserInfoMap(userInfoMap);
 			} else {
 				loginService.delLocalUserInfo();
-				cleanEdit();
 			}
 			loginSuccess();
 		} else {
